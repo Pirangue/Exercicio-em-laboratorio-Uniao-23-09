@@ -1,0 +1,24 @@
+SELECT 
+    COALESCE(p.Nome, b.Nome_banco, e.Nome_empresa) AS Nome_proprietario,
+    CASE 
+        WHEN p.Id_proprietario IS NOT NULL THEN 'Pessoa'
+        WHEN b.Id_proprietario IS NOT NULL THEN 'Banco'
+        WHEN e.Id_proprietario IS NOT NULL THEN 'Empresa'
+    END AS Tipo_proprietario,
+    vr.Placa,
+    CASE 
+        WHEN ca.Placa IS NOT NULL THEN 'Carro'
+        WHEN cm.Placa IS NOT NULL THEN 'Caminhão'
+    END AS Tipo_veiculo,
+    ed.Data_compra,
+    ed.Alienado_ou_regular AS Situacao,
+    COALESCE(ca.Modelo_carro, cm.Modelo_caminhao) AS Modelo,
+    COALESCE(ca.Marca_carro, cm.Marca_caminhao) AS Marca
+FROM E_DONO ed
+INNER JOIN PROPRIETARIO pr ON ed.Id_proprietario = pr.Id_proprietario
+LEFT JOIN PESSOA p ON pr.Id_proprietario = p.Id_proprietario
+LEFT JOIN BANCO b ON pr.Id_proprietario = b.Id_proprietario
+LEFT JOIN EMPRESA e ON pr.Id_proprietario = e.Id_proprietario
+INNER JOIN VEICULO_REGISTRADO vr ON ed.Placa = vr.Placa
+LEFT JOIN CARRO ca ON vr.Placa = ca.Placa
+LEFT JOIN CAMINHAO cm ON vr.Placa = cm.Placa;
