@@ -1,0 +1,32 @@
+-- 1. Inserir João da Silva (PESSOA)
+INSERT INTO PROPRIETARIO (Id_proprietario) VALUES (1);
+INSERT INTO PESSOA (Id_proprietario, Nome, Cpf, Endereco, Num_cartera_motorista)
+VALUES (1, 'João da Silva', '12345678900', 'Rua A, 100', '987654321');
+
+-- 2. Inserir Banco XYZ (BANCO)
+INSERT INTO PROPRIETARIO (Id_proprietario) VALUES (2);
+INSERT INTO BANCO (Id_proprietario, Nome_banco, Endereco_banco)
+VALUES (2, 'Banco XYZ', 'Av. das Finanças, 500');
+
+-- 3. Inserir Auto Peças Ltda (EMPRESA)
+INSERT INTO PROPRIETARIO (Id_proprietario) VALUES (3);
+INSERT INTO EMPRESA (Id_proprietario, Nome_empresa, Endereco_empresa)
+VALUES (3, 'Auto Peças Ltda', 'Rodovia 123, km 45');
+
+-- 4. Inserir carro Fiat Uno
+INSERT INTO VEICULO_REGISTRADO (Placa, Cod_veiculo) VALUES ('ABC1234', 'CAR001');
+INSERT INTO CARRO (Placa, Marca_carro, Modelo_carro, Ano_carro, Estilo)
+VALUES ('ABC1234', 'Fiat', 'Uno', 2015, 'Hatch');
+
+-- 5. Inserir caminhão Mercedes Axor
+INSERT INTO VEICULO_REGISTRADO (Placa, Cod_veiculo) VALUES ('XYZ5678', 'TRK001');
+INSERT INTO CAMINHAO (Placa, Marca_caminhao, Modelo_caminhao, Ano_caminhao, Capacidade_peso)
+VALUES ('XYZ5678', 'Mercedes', 'Axor', 2020, 32000.00);
+
+-- 6. Registrar que João da Silva comprou o carro
+INSERT INTO E_DONO (Id_proprietario, Placa, Data_compra, Alienado_ou_regular)
+VALUES (1, 'ABC1234', '2021-04-15', 'regular');
+
+-- 7. Registrar que Banco XYZ é proprietário do caminhão
+INSERT INTO E_DONO (Id_proprietario, Placa, Data_compra, Alienado_ou_regular)
+VALUES (2, 'XYZ5678', '2022-01-10', 'alienado');
